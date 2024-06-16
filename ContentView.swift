@@ -21,8 +21,13 @@ struct ContentView: View {
                 if yesorno == true{
                     Alertview {
                         ScrollView{
-                            
-                            Text(" Conectado a \(bluetoothManager.equipo)")
+                            if bluetoothManager.equipo != "" {  Text(" Conectado a \(bluetoothManager.equipo)")}else{
+                                Image(systemName: "xmark.icloud")
+                                
+                                Text("Aun no se ha connectado")
+                                Text("Presione 🔵 para conectarse")
+                            }
+                           
       }
                         HStack{
                             Button(action: {
@@ -38,7 +43,7 @@ struct ContentView: View {
                             })
                             .padding()
                             Button(action:{
-                               print("algo")
+                               
                                
                             }, label: {Text("Connect")})
                             .foregroundColor(.white)
@@ -117,18 +122,25 @@ struct ContentView: View {
                         }
                         HStack{
                             Button(action: {
-                               
-                               yesorno = true
-                               
-    
+                                
+                                yesorno = true
+                                
+                                
                             }, label: {
-                                Text("🟡")
+                                Text("⚙️")
+                                    
                             })
                             Button("Scan"){
                                 bluetoothManager.startScanning()}
                             .padding()
                             Button("Stop"){
-                                bluetoothManager.fun()}}
+                                bluetoothManager.fun()}
+                            .padding()
+                            Button(action:{
+                                bluetoothManager.fun2()
+                               
+                            }, label: {Text("🧽")})
+                        }
                             
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }}
@@ -148,9 +160,8 @@ struct Alertview<Content: View>: View {
     var body: some View {
         
             VStack{
-                Image(systemName: "wifi")
-                    .resizable()
-                    .frame(width: 20, height:20)
+                Spacer()
+               
                 content
                     .padding()
                 Divider()
