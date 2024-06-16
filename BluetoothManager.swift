@@ -33,14 +33,24 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         centralManager.stopScan()
     }
     func frombase64(word:String)->String {
-        let base62Decoded = Data(base64Encoded: word)!
-        let decodedString = String(data:base62Decoded, encoding: .utf8)!
+        let base64Decoded = Data(base64Encoded: word)!
+        let decodedString = String(data:base64Decoded, encoding: .utf8)!
         
         return  decodedString
     }
     func fun (){
         centralManager.stopScan()
         print("Escaneo detenido ")
+    }
+    func fun2(){
+        devices = []
+      equipo  = ""
+       carasteristicas = []
+         status = []
+       servicio = []
+          Valor  = []
+        cantidad = []
+        
     }
     func startScanning() {
         centralManager.scanForPeripherals(withServices: nil, options: nil)
